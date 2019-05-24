@@ -22,7 +22,7 @@ public final class Constants {
 	public static final int CANTOR_BX=800;
 	public static final int CANTOR_BY=100;
 	public static final int CANTOR_WIDTH=20;
-	public static final int CANTOR_HIGHT=200;
+	public static final int CANTOR_HIGHT=80;
 	//----------------------------		
 	public static final int KOCHTYPE01=2;
 	public static final int KOCHTYPE02=3;	

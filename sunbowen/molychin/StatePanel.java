@@ -830,29 +830,39 @@ public class StatePanel extends JPanel {
 				if (fractalType == Constants.NOTHING) {
 					initNothing();
 				} else if (fractalType == Constants.CANTORTYPE) {
+					//System.out.print("Cantor");
+					textAreaStateMessage.setText("Cantor Set");
 				} else if (fractalType == Constants.KOCHTYPE01
 						|| fractalType == Constants.KOCHTYPE02
 						|| fractalType == Constants.KOCHTYPE03
 						|| fractalType == Constants.KOCHTYPE04) {
+					textAreaStateMessage.setText("Koch Set");
 					initKoch();
 				} else if (fractalType == Constants.ARBORESENTTYPE) {
+					textAreaStateMessage.setText("ARBORESENTTYPE Set");
 				} else if (fractalType == Constants.SIERPINSKITYPE) {
+					textAreaStateMessage.setText("SIERPINSKITYPE Set");
 				} else if (fractalType == Constants.LEAFTYPE) {
+					textAreaStateMessage.setText("LEAFTYPE Set");
 					intiLeaf();
 				} else if (fractalType == Constants.LSTYPE01
 						|| fractalType == Constants.LSTYPE02
 						|| fractalType == Constants.LSTYPE03
 						|| fractalType == Constants.LSTYPE04) {
+					textAreaStateMessage.setText("LSTYPE Set");
 					initLS();
 				} else if (fractalType == Constants.IFS01) {
+					textAreaStateMessage.setText("IFS01 Set");
 					initIFS();
 				} else if (fractalType == Constants.IFSJulia) {
+					textAreaStateMessage.setText("IFSJulia Set");
 					initIFSJulia();
 				} else if (fractalType == Constants.JULIATYPE01
 						|| fractalType == Constants.JULIATYPE02
 						|| fractalType == Constants.JULIATYPE03
 						|| fractalType == Constants.JULIATYPE04
 						|| fractalType == Constants.JULIATYPE05) {
+					textAreaStateMessage.setText("SIERPINSKITYPE Set");
 					initJulia();
 				}
 				fractalObject.setFractalType(fractalType);
