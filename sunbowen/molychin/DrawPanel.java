@@ -23,9 +23,7 @@ public class DrawPanel extends JPanel {
 		super.paint(g);
 		g.setColor(Constants.DRAW_COLOR);
 		this.fractalObject=frame.fractalObject;
-		//System.out.println("fractalObject="+fractalObject);
 		int fractalType = fractalObject.getFractalType();
-		//System.out.println("fractalType="+fractalType);
 		if (fractalType == Constants.CANTORTYPE) {
 			drawCantor(g, Constants.CANTOR_AX, Constants.CANTOR_AY,
 					Constants.CANTOR_BX, Constants.CANTOR_BY);
@@ -93,16 +91,20 @@ public class DrawPanel extends JPanel {
 	public void drawCantor(Graphics g, double ax, double ay, double bx,
 			double by) {
 		if ((bx - ax) < Constants.CANTOR_MIN_STEP) {
-			g.drawLine((int) ax, (int) ay, (int) bx, (int) by);
+			//以画线段的方式呈现Cantor集
+			//g.drawLine((int) ax, (int) ay, (int) bx, (int) by);
+			//以画短实心线段（矩形）的方式呈现Cantor集
+			g.fillRect((int) ax,(int) ay,(int)(bx-ax),Constants.CANTOR_WIDTH);
 		} else {
 			double cx = 0, cy = 0, dx = 0, dy = 0;
-			g.drawLine((int) ax, (int) ay, (int) bx, (int) by);
+			//g.drawLine((int) ax, (int) ay, (int) bx, (int) by);
+			g.fillRect((int) ax,(int) ay,(int)(bx-ax),Constants.CANTOR_WIDTH);
 			cx = ax + (bx - ax) / 3;
-			cy = ay + 50;
+			cy = ay + Constants.CANTOR_HIGHT;
 			dx = bx - (bx - ax) / 3;
-			dy = by + 50;
-			ay = ay + 50;
-			by = by + 50;
+			dy = by + Constants.CANTOR_HIGHT;
+			ay = ay + Constants.CANTOR_HIGHT;
+			by = by + Constants.CANTOR_HIGHT;
 
 			drawCantor(g, ax, ay, cx, cy);
 			drawCantor(g, dx, dy, bx, by);
