@@ -27,7 +27,7 @@ public class Turtle {
 		newYpos = ypos + (laenge * Math.sin(Math.toRadians(alpha)));
 		if (penState) {
 			g.drawLine((int) xpos, (int) ypos, (int) newXpos, (int) newYpos);
-		}
+		}else{}
 		setXpos(newXpos);
 		setYpos(newYpos);
 	}

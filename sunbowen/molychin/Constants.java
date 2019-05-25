@@ -131,14 +131,15 @@ public final class Constants {
 	public static final int JULIATYPE05=19;	
 	//-----------------------
 	public static final int LSSCALE01=20;	
-	public static final int LSSCALE_STEP=100;
-	public static final double LSSCALE_ANGLE=22;
-	public static final int LSSCALE_DEPTH=5;
+	public static final int LSSCALE_STEP=1;
+	public static final double LSSCALE_ANGLE=100;
+	public static final int LSSCALE_DEPTH=10;
 	public static final String LSSCALE_SEED1="F";
 	//public static final String LS_REGULATION= "F[-F]F[+F]F";
 	public static final String LSSCALE_REGULATION= "F+F";
-	public static final int LSSCALE_AX=400;
-	public static final int LSSCALE_AY=200;
+	public static final int LSSCALE_AX=600;
+	public static final int LSSCALE_AY=500;
 	public static final int LSSCALE_PRI_ANGLE=0;
+	public static final float LSSCALE_SCALE=6.5f;   //放大系数；
 	
 }

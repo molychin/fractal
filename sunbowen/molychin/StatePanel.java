@@ -61,7 +61,7 @@ public class StatePanel extends JPanel {
 		this.comboBoxFractalType.addItem("JuliaType05");
 		this.comboBoxFractalType.addItem("LSScaleType01");   //依据迭代深度变步长；		
 		this.comboBoxFractalType.setSelectedIndex(-1);
-		this.comboBoxFractalType.addItemListener(new myItemListener());
+		this.comboBoxFractalType.addItemListener(new MyItemListener());
 
 		panel1 = new JPanel();
 		panel1.setLayout(new GridLayout(0, 2, 0, 2));
@@ -104,6 +104,7 @@ public class StatePanel extends JPanel {
 	
 	private void initKoch() {
 		if (fractalType == Constants.KOCHTYPE01) {
+			//do something.
 		} else if (fractalType == Constants.KOCHTYPE02
 				|| fractalType == Constants.KOCHTYPE03
 				|| fractalType == Constants.KOCHTYPE04) {
@@ -138,7 +139,7 @@ public class StatePanel extends JPanel {
 			this.updateUI();// 更新panel1的控件
 
 			fractalObject.addParameter(Double.valueOf(textField1.getText()));
-		}
+		}else{}
 	}
 
 	private void intiLeaf() {
@@ -688,7 +689,7 @@ public class StatePanel extends JPanel {
 
 			JSlider sliderParameter1 = new JSlider();
 			sliderParameter1.setMinimum(1);
-			sliderParameter1.setMaximum(100);
+			sliderParameter1.setMaximum(200);
 			sliderParameter1.setMinorTickSpacing(1);
 			sliderParameter1.setValue((int) Constants.LSSCALE_ANGLE);
 			sliderParameter1.setPaintLabels(true);
@@ -716,10 +717,7 @@ public class StatePanel extends JPanel {
 			fractalObject.addParameter(Constants.LSSCALE_ANGLE);
 			fractalObject.addParameter(Constants.LSSCALE_STEP);
 			fractalObject.addParameter(Constants.LSSCALE_DEPTH);			
-		}
-		else{
-			//do something.
-		}
+		}else{}
 	}
 
 	private void initIFSJulia() {
@@ -908,7 +906,7 @@ public class StatePanel extends JPanel {
 		frame.fractalObject=this.fractalObject;
 	}
 	
-	class myItemListener implements ItemListener {
+	class MyItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 				init();
@@ -960,7 +958,7 @@ public class StatePanel extends JPanel {
 				}
 				fractalObject.setFractalType(fractalType);
 				frame.repaint();
-			}
+			}else{}
 		}
 	}
 
@@ -1140,28 +1138,26 @@ public class StatePanel extends JPanel {
 							.setValue(
 									(int) (stepSpeed
 											* (step - Constants.JULIA_STEP_MIN) / (Constants.JULIA_STEP_MAX - Constants.JULIA_STEP_MIN)));
-				}else if( (fractalType == Constants.LSSCALE01)){
-					if (source.getName().equals("LSSCALE_SEED")) {
-						String seed = source.getText();
-						fractalObject.setParameter(0, seed);
-					} else if (source.getName().equals("LSSCALE_REGULATION")) {
-						String regulation = source.getText();
-						fractalObject.setParameter(1, regulation);
-					} else if (source.getName().equals("LSSCALE_ANGLE")) {
-						double angle = Double.valueOf(source.getText());
-						sliderParameters.get(0).setValue((int) (angle));
-						fractalObject.setParameter(2, angle);
-					} else if (source.getName().equals("LSSCALE_STEP")) {
-						int step = Integer.valueOf(source.getText());
-						fractalObject.setParameter(3, step);
-					} else if (source.getName().equals("LSSCALE_DEPTH")) {
-						int depth = Integer.valueOf(source.getText());
-						fractalObject.setParameter(4, depth);
-					}else{}					
-				}else{
-					//do something.
-				}
-			}
+				}else{}
+			}else if( (fractalType == Constants.LSSCALE01)){
+				if (source.getName().equals("LSSCALE_SEED")) {
+					String seed = source.getText();
+					fractalObject.setParameter(0, seed);
+				} else if (source.getName().equals("LSSCALE_REGULATION")) {
+					String regulation = source.getText();
+					fractalObject.setParameter(1, regulation);
+				} else if (source.getName().equals("LSSCALE_ANGLE")) {
+					double angle = Double.valueOf(source.getText());
+					sliderParameters.get(0).setValue((int) (angle));
+					fractalObject.setParameter(2, angle);
+				} else if (source.getName().equals("LSSCALE_STEP")) {
+					int step = Integer.valueOf(source.getText());
+					fractalObject.setParameter(3, step);
+				} else if (source.getName().equals("LSSCALE_DEPTH")) {
+					int depth = Integer.valueOf(source.getText());
+					fractalObject.setParameter(4, depth);
+				}else{}					
+			}else{}
 			frame.repaint();
 		}
 	}
@@ -1178,7 +1174,7 @@ public class StatePanel extends JPanel {
 					fractalObject.setParameter(0, para01);
 					textFields.get(0)
 							.setText(Double.valueOf(para01).toString());
-				}
+				}else{}
 			} else if (fractalType == Constants.LEAFTYPE) {
 				if (source.getName().equals("LEAF_ANGLE1")) {
 					int leafB = source.getValue();
@@ -1200,26 +1196,26 @@ public class StatePanel extends JPanel {
 					fractalObject.setParameter(3, leafScale2 / 10.0);
 					textFields.get(3).setText(
 							Double.valueOf(leafScale2 / 10.0).toString());
-				}
+				}else{}
 			} else if ((fractalType == Constants.LSTYPE01)) {
 				if (source.getName().equals("LS_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(2, angle);
 					textFields.get(2).setText(Double.valueOf(angle).toString());
-				}
+				}else{}
 			} else if (fractalType == Constants.LSTYPE02
 					|| fractalType == Constants.LSTYPE03) {
 				if (source.getName().equals("LS_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(3, angle);
 					textFields.get(3).setText(Double.valueOf(angle).toString());
-				}
+				}else{}
 			} else if (fractalType == Constants.LSTYPE04) {
 				if (source.getName().equals("LS_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(4, angle);
 					textFields.get(4).setText(Double.valueOf(angle).toString());
-				}
+				}else{}
 			} else if (fractalType == Constants.IFSJulia) {
 				String string;
 				FractalIFSJulia.count=0;
@@ -1234,7 +1230,7 @@ public class StatePanel extends JPanel {
 					string = Double.valueOf(ifsCx).toString();
 					if (string.length() > 8) {
 						string = string.substring(0, 8);
-					}
+					}else{}
 					textFields.get(0).setText(string);
 				} else if (source.getName().equals("IFS_CY")) {
 					double ifsCy = Double.valueOf(source.getValue())
@@ -1244,9 +1240,9 @@ public class StatePanel extends JPanel {
 					string = Double.valueOf(ifsCy).toString();
 					if (string.length() > 8) {
 						string = string.substring(0, 8);
-					}
+					}else{}
 					textFields.get(1).setText(string);
-				}
+				}else{}
 			} else if (fractalType == Constants.JULIATYPE01
 					|| fractalType == Constants.JULIATYPE02
 					|| fractalType == Constants.JULIATYPE03
@@ -1283,7 +1279,7 @@ public class StatePanel extends JPanel {
 					textFields.get(2).setText(
 							(string.length() > 10) ? string.substring(0, 10)
 									: string);
-				}
+				}else{}
 			}else if((fractalType == Constants.LSSCALE01)){
 				if (source.getName().equals("LSSCALE_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());

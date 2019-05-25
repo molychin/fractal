@@ -35,7 +35,7 @@ public class ButtonPanel extends JPanel{
 					fractalObject.setParameter(0,Double.valueOf(statePanel.getTextField(0).getText()).doubleValue());
 				}else if (fractalType==Constants.IFS01){
 					//nothing;
-				}
+				}else{}
 				frame.repaint();		
 			}
 		});
@@ -46,7 +46,7 @@ public class ButtonPanel extends JPanel{
 				if(fractalType==Constants.KOCHTYPE02||fractalType==Constants.KOCHTYPE03
 						||fractalType==Constants.KOCHTYPE04){
 					fractalObject.setParameter(0,Double.valueOf(statePanel.getTextField(0).getText()).doubleValue());
-				}
+				}else{}
 				frame.repaint();		
 			}
 		});

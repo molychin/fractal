@@ -12,6 +12,7 @@ public class DrawPanel extends JPanel {
 	FractalObject fractalObject;
 	FractalFrame frame;
 	Image image;
+	static int currentDepth=0;    //当前迭代深度，可用于LSSCALE01
 
 	public DrawPanel(FractalFrame frame) {
 		this.frame = frame;
@@ -76,10 +77,7 @@ public class DrawPanel extends JPanel {
 			this.draw(g);
 		}else if (fractalType==Constants.LSSCALE01) {
 			drawLSScal01(g);
-		}
-		else{
-			// do something.
-		}
+		}else{}
 	}
 
 	private void draw(Graphics g){
@@ -165,7 +163,7 @@ public class DrawPanel extends JPanel {
 			if ((alpha >= 0) && ((eX - cX) < 0) || (alpha <= 0)
 					&& ((eX - cX) < 0)) {
 				alpha = alpha + Math.PI;
-			}
+			}else{}
 
 			dY = cY + Math.sin(alpha + Math.PI / 3) * l;
 			dX = cX + Math.cos(alpha + Math.PI / 3) * l;
@@ -240,7 +238,7 @@ public class DrawPanel extends JPanel {
 			if ((alpha >= 0) && ((eX - cX) < 0) || (alpha <= 0)
 					&& ((eX - cX) < 0)) {
 				alpha = alpha + Math.PI;
-			}
+			}else{}
 
 			dY = cY + Math.sin(alpha + Math.PI / 3) * l;
 			dX = cX + Math.cos(alpha + Math.PI / 3) * l;
@@ -311,8 +309,9 @@ public class DrawPanel extends JPanel {
 			int level) {
 		Point a1, b1, c1, a2, b2, c2, a3, b3, c3;
 
-		if (level == 0)
+		if (level == 0){
 			return;
+		}else{}
 		level -= 1;
 
 		int xCoords[] = { c.x, (c.x + b.x) / 2, (a.x + c.x) / 2 };
@@ -385,7 +384,7 @@ public class DrawPanel extends JPanel {
 			drawLeaf(g, x2L, y2L, longer / s2, angle - leafB);
 			drawLeaf(g, x1L, y1L, longer / s2, angle - leafB);
 			drawLeaf(g, x1R, y1R, longer / s2, angle + leafB);
-		}
+		}else{}
 	}
 
 	public void drawLS01(Graphics g) {
@@ -410,7 +409,7 @@ public class DrawPanel extends JPanel {
 					seed = seed.deleteCharAt(i);     //删除种子字
 					seed = seed.insert(i, regulation);	//在原种子字位子，插入新的生成规则
 					i = i + regulation.length()-1;	//重新计算整个生长码的长度
-				}
+				}else{}
 			}
 		}
 		
@@ -423,11 +422,12 @@ public class DrawPanel extends JPanel {
 
 	//变长的LS01系统，即步长和迭代深度相关
 	public void drawLSScal01(Graphics g) {
+		currentDepth=0;
 		int depth = (Integer) fractalObject.getParameter(4);    //从参数面板中获取迭代深度参数
 		StringBuffer seed = new StringBuffer((String) fractalObject
 				.getParameter(0));  //获取种子
 		String regulation = (String) fractalObject.getParameter(1);   //获取生长规则
-		regulation="("+regulation+")";  //利用()嵌套来表示迭代的深度，即()越多，迭代深度越大；
+		//regulation="("+regulation+")";  //利用()嵌套来表示迭代的深度，即()越多，迭代深度越大；
 		
 		Turtle turtle = new Turtle();    //新建海龟对象
 		LLStack stack = new LLStack();
@@ -437,7 +437,7 @@ public class DrawPanel extends JPanel {
 		turtle.setAlpha(Constants.LSSCALE_PRI_ANGLE);	//设置海龟初始的转动角度
 		turtle.pendown();
 
-		System.out.println("regulation = "+regulation);
+		//System.out.println("regulation = "+regulation);
 		//编码整个生命周期的生长码
 		for (int z = 0; z < depth; z++) {
 			for (int i = 0; i < seed.length(); i++) {
@@ -449,8 +449,7 @@ public class DrawPanel extends JPanel {
 			}
 		}
 		
-		System.out.println("seed = "+seed);
-
+		//System.out.println("seed = "+seed);
 		for (int z = 0; z < seed.length(); z++) {
 			lsScaleAction(g, seed.charAt(z), turtle, stack, null);
 		}
@@ -476,14 +475,14 @@ public class DrawPanel extends JPanel {
 					seed = seed.deleteCharAt(i);
 					seed = seed.insert(i, regulation1);
 					i = i + regulation1.length();
-				}
+				}else{}
 			}
 			for (int i = 0; i < seed.length(); i++) {
 				if (seed.charAt(i) == 'Y') {
 					seed = seed.deleteCharAt(i);
 					seed = seed.insert(i, regulation2);
 					i = i + regulation2.length();
-				}
+				}else{}
 			}
 		}
 
@@ -512,14 +511,14 @@ public class DrawPanel extends JPanel {
 					seed = seed.deleteCharAt(i);
 					seed = seed.insert(i, regulation1);
 					i = i + regulation1.length();
-				}
+				}else{}
 			}
 			for (int i = 0; i < seed.length(); i++) {
 				if (seed.charAt(i) == 'R') {
 					seed = seed.deleteCharAt(i);
 					seed = seed.insert(i, regulation2);
 					i = i + regulation2.length();
-				}
+				}else{}
 			}
 		}
 
@@ -552,12 +551,9 @@ public class DrawPanel extends JPanel {
 					String regul = selectRegulation(Math.random());
 					seed = seed.insert(i, regul);
 					i = i + regul.length();
-				}
+				}else{}
 			}
 		}
-		// System.out.println("seed2="+seed);
-		// System.out.println("p4="+fractalObject.getParameter(4));
-		// System.out.println("p5="+fractalObject.getParameter(5));
 
 		for (int z = 0; z < seed.length(); z++) {
 			lsAction04(g, seed.charAt(z), turtle, stack, null);
@@ -606,8 +602,7 @@ public class DrawPanel extends JPanel {
 			turtle.setYpos(note.getY());
 			turtle.setAlpha(note.getAngle());
 			break;
-		default: {
-		}
+		default: {}
 		}
 	}
 
@@ -720,15 +715,21 @@ public class DrawPanel extends JPanel {
 	//LSTYPE1替代规则
 	private void lsScaleAction(Graphics g, char ch, Turtle turtle, LLStack stack,
 			Note note) {
-		//System.out.print("ok");
+
+		int moveStep=0;
+		
 		switch (ch) {
 		case 'F':
 			turtle.pendown();
-			turtle.move((Integer) fractalObject.getParameter(3), g);    //parameter=3=LS_STEP 落笔，向前走的步长
+			//moveStep=(Integer) fractalObject.getParameter(3)*Constants.LSSCALE_SCALE*currentDepth;
+			moveStep=(int)(((Integer) fractalObject.getParameter(3))*Constants.LSSCALE_SCALE/Constants.LSSCALE_DEPTH*(currentDepth++));
+			//System.out.println("moveStep = "+moveStep);
+			turtle.move(moveStep, g);    //parameter=3=LS_STEP 落笔，向前走的步长
 			break;
 		case 'f':
 			turtle.penup();
-			turtle.move((Integer) fractalObject.getParameter(3), g);     //parameter=3=LS_STEP 抬笔，向前走的步长
+			moveStep=(int)(((Integer) fractalObject.getParameter(3))*Constants.LSSCALE_SCALE*(currentDepth++));
+			turtle.move(moveStep, g);     //parameter=3=LS_STEP 抬笔，向前走的步长
 			break;
 		case '+':
 			turtle.turn((Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 右转角度数
@@ -748,8 +749,13 @@ public class DrawPanel extends JPanel {
 			turtle.setYpos(note.getY());
 			turtle.setAlpha(note.getAngle());
 			break;
-		default: {
-		}
+		//case '(':
+			//currentDepth++;
+			//break;
+		//case ')':
+			//currentDepth--;
+			//break;
+		default: {}
 		}
 	}
 

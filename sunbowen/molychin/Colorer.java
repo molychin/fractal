@@ -67,10 +67,10 @@ public class Colorer {
 	public void setChangingColor(int si, int ei, Color sc, Color ec) {
 		if (si < 0 || si >= colorNumber) {
 			si = 0;
-		}
+		}else{}
 		if (ei < 0 || ei >= colorNumber) {
 			ei = colorNumber - 1;
-		}
+		}else{}
 
 		float rd = ((float) ec.getRed() - sc.getRed()) / (ei - si);
 		float gd = ((float) ec.getGreen() - sc.getGreen()) / (ei - si);
