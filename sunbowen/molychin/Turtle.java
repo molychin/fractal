@@ -48,10 +48,12 @@ public class Turtle {
 		this.ypos = ypos;
 	}
 
+	//设置转身角度
 	public double getAlpha() {
 		return alpha;
 	}
 
+	//获取转身角度
 	public void setAlpha(double alpha) {
 		this.alpha = alpha;
 	}

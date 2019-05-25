@@ -3,6 +3,13 @@ package fractal.sunbowen.molychin;
 import java.awt.Color;
 
 public final class Constants {
+	/*分形类型 fractalType
+	 *NOTHING=0/CANTORTYPE=1/KOCHTYPE01=2/KOCHTYPE02=3/KOCHTYPE03=4/KOCHTYPE04=5/
+	 *ARBORESENTTYPE=6/SIERPINSKITYPE=7/LEAFTYPE=8/LSTYPE01=9/LSTYPE02=10/LSTYPE03=11/
+	 *LSTYPE04=12/IFSJulia=13/IFS01=14/JULIATYPE01=15/JULIATYPE02=16/
+	 *JULIATYPE03=17/JULIATYPE04=18/JULIATYPE05=19/LSSCALE01=20/
+	 */
+	
 	public static final int SCREEN_LEFT_TOP_X=50;
 	public static final int SCREEN_LEFT_TOP_Y=50;
 	public static final int SCREEN_WIDTH=1200;
@@ -54,12 +61,13 @@ public final class Constants {
 	public static final double LEAF_SCALE2=1.3;
 	//----------------------------	
 	public static final int LSTYPE01=9;
-	public static final int LS_STEP=3;
+	public static final int LS_STEP=100;
 	public static final double LS_ANGLE=22;
 	public static final int LS_DEPTH=5;
 	public static final String LS_SEED1="F";
-	public static final String LS_REGULATION= "F[-F]F[+F]F";
-	public static final int LS_AX=30;
+	//public static final String LS_REGULATION= "F[-F]F[+F]F";
+	public static final String LS_REGULATION= "F+F";
+	public static final int LS_AX=400;
 	public static final int LS_AY=400;
 	public static final int LS_PRI_ANGLE=0;
 	//----------------------------
@@ -78,10 +86,8 @@ public final class Constants {
 	public static final String LS04_REGULATION1="F[+F]F[-F]F";
 	public static final String LS04_REGULATION2="F[+F]F[-F[+F]]";
 	public static final String LS04_REGULATION3="FF-[-F+F+F]+[+F-F-F]";
-	//------------------------------
-	public static final int IFS01=13;
 	//----------选取一下参数，保证程序不会溢出--------------------
-	public static final int IFSJulia=14;
+	public static final int IFSJulia=13;
 	public static final int IFS_DEPTH=2;
 	public static final double IFS_CX=-0.74543;
 	public static final double IFS_CY=0.11301;
@@ -94,6 +100,8 @@ public final class Constants {
 	public static final double IFS_CY_MAX=2.0;
 	public static final double IFS_CY_MIN=-2.0;
 	public static final int IFS_COUNT_MAX=25000;
+	//------------------------------
+	public static final int IFS01=14;		
 	//-----------------------
 	public static final int JULIATYPE01=15;
 	public static final double JULIA_CP=-0.46;
@@ -122,6 +130,15 @@ public final class Constants {
 	//-----------------------	
 	public static final int JULIATYPE05=19;	
 	//-----------------------
-	
+	public static final int LSSCALE01=20;	
+	public static final int LSSCALE_STEP=100;
+	public static final double LSSCALE_ANGLE=22;
+	public static final int LSSCALE_DEPTH=5;
+	public static final String LSSCALE_SEED1="F";
+	//public static final String LS_REGULATION= "F[-F]F[+F]F";
+	public static final String LSSCALE_REGULATION= "F+F";
+	public static final int LSSCALE_AX=400;
+	public static final int LSSCALE_AY=200;
+	public static final int LSSCALE_PRI_ANGLE=0;
 	
 }

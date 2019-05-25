@@ -2,7 +2,6 @@ package fractal.sunbowen.molychin;
 
 import java.awt.*;
 import java.awt.image.MemoryImageSource;
-
 import javax.swing.*;
 
 import fractal.sunbowen.molychin.type.FractalObject;
@@ -21,10 +20,14 @@ public class DrawPanel extends JPanel {
 
 	public void paint(Graphics g) {
 		super.paint(g);
+		
 		g.setColor(Constants.DRAW_COLOR);
 		this.fractalObject=frame.fractalObject;
 		int fractalType = fractalObject.getFractalType();
-		if (fractalType == Constants.CANTORTYPE) {
+		
+		if (fractalType==Constants.NOTHING){
+			this.draw(g);
+		}else if(fractalType == Constants.CANTORTYPE) {
 			drawCantor(g, Constants.CANTOR_AX, Constants.CANTOR_AY,
 					Constants.CANTOR_BX, Constants.CANTOR_BY);
 		} else if (fractalType == Constants.KOCHTYPE01) {
@@ -70,10 +73,12 @@ public class DrawPanel extends JPanel {
 				|| fractalType == Constants.JULIATYPE03
 				|| fractalType == Constants.JULIATYPE04
 				|| fractalType == Constants.JULIATYPE05) {
-			//System.out.println("fractalObject="+fractalObject);
 			this.draw(g);
-		} else if(fractalType==Constants.NOTHING){
-			this.draw(g);
+		}else if (fractalType==Constants.LSSCALE01) {
+			drawLSScal01(g);
+		}
+		else{
+			// do something.
 		}
 	}
 
@@ -88,6 +93,7 @@ public class DrawPanel extends JPanel {
 		g.drawString("Nothing is drawing", 400, 200);
 	}
 
+	//绘制Cantor集
 	public void drawCantor(Graphics g, double ax, double ay, double bx,
 			double by) {
 		if ((bx - ax) < Constants.CANTOR_MIN_STEP) {
@@ -383,33 +389,73 @@ public class DrawPanel extends JPanel {
 	}
 
 	public void drawLS01(Graphics g) {
-		int depth = (Integer) fractalObject.getParameter(4);
+		int depth = (Integer) fractalObject.getParameter(4);    //从参数面板中获取迭代深度参数
 		StringBuffer seed = new StringBuffer((String) fractalObject
-				.getParameter(0));
-		String regulation = (String) fractalObject.getParameter(1);
-		Turtle turtle = new Turtle();
+				.getParameter(0));  //获取种子
+		String regulation = (String) fractalObject.getParameter(1);   //获取生长规则
+		
+		Turtle turtle = new Turtle();    //新建海龟对象
 		LLStack stack = new LLStack();
 
-		turtle.setXpos(Constants.LS_AX);
-		turtle.setYpos(Constants.LS_AY);
-		turtle.setAlpha(Constants.LS_PRI_ANGLE);
+		turtle.setXpos(Constants.LS_AX);   //设置海龟起点X坐标
+		turtle.setYpos(Constants.LS_AY);	//设置海龟起点y坐标
+		turtle.setAlpha(Constants.LS_PRI_ANGLE);	//设置海龟初始的转动角度
 		turtle.pendown();
 
+		System.out.println("regulation = "+regulation);
+		//编码整个生命周期的生长码
 		for (int z = 0; z < depth; z++) {
 			for (int i = 0; i < seed.length(); i++) {
 				if (seed.charAt(i) == 'F') {
-					seed = seed.deleteCharAt(i);
-					seed = seed.insert(i, regulation);
-					i = i + regulation.length();
+					seed = seed.deleteCharAt(i);     //删除种子字
+					seed = seed.insert(i, regulation);	//在原种子字位子，插入新的生成规则
+					i = i + regulation.length()-1;	//重新计算整个生长码的长度
 				}
 			}
 		}
+		
+		System.out.println("seed = "+seed);
 
 		for (int z = 0; z < seed.length(); z++) {
 			lsAction01(g, seed.charAt(z), turtle, stack, null);
 		}
 	}
 
+	//变长的LS01系统，即步长和迭代深度相关
+	public void drawLSScal01(Graphics g) {
+		int depth = (Integer) fractalObject.getParameter(4);    //从参数面板中获取迭代深度参数
+		StringBuffer seed = new StringBuffer((String) fractalObject
+				.getParameter(0));  //获取种子
+		String regulation = (String) fractalObject.getParameter(1);   //获取生长规则
+		regulation="("+regulation+")";  //利用()嵌套来表示迭代的深度，即()越多，迭代深度越大；
+		
+		Turtle turtle = new Turtle();    //新建海龟对象
+		LLStack stack = new LLStack();
+
+		turtle.setXpos(Constants.LSSCALE_AX);   //设置海龟起点X坐标
+		turtle.setYpos(Constants.LSSCALE_AY);	//设置海龟起点y坐标
+		turtle.setAlpha(Constants.LSSCALE_PRI_ANGLE);	//设置海龟初始的转动角度
+		turtle.pendown();
+
+		System.out.println("regulation = "+regulation);
+		//编码整个生命周期的生长码
+		for (int z = 0; z < depth; z++) {
+			for (int i = 0; i < seed.length(); i++) {
+				if (seed.charAt(i) == 'F') {
+					seed = seed.deleteCharAt(i);     //删除种子字
+					seed = seed.insert(i, regulation);	//在原种子字位子，插入新的生成规则
+					i = i + regulation.length()-1;	//重新计算整个生长码的长度
+				}else{}
+			}
+		}
+		
+		System.out.println("seed = "+seed);
+
+		for (int z = 0; z < seed.length(); z++) {
+			lsScaleAction(g, seed.charAt(z), turtle, stack, null);
+		}
+	}	
+	
 	public void drawLS02(Graphics g) {
 		int depth = (Integer) fractalObject.getParameter(5);
 		StringBuffer seed = new StringBuffer((String) fractalObject
@@ -530,22 +576,23 @@ public class DrawPanel extends JPanel {
 		return regulation;
 	}
 
+	//LSTYPE1替代规则
 	private void lsAction01(Graphics g, char ch, Turtle turtle, LLStack stack,
 			Note note) {
 		switch (ch) {
 		case 'F':
 			turtle.pendown();
-			turtle.move((Integer) fractalObject.getParameter(3), g);
+			turtle.move((Integer) fractalObject.getParameter(3), g);    //parameter=3=LS_STEP 落笔，向前走的步长
 			break;
 		case 'f':
 			turtle.penup();
-			turtle.move((Integer) fractalObject.getParameter(3), g);
+			turtle.move((Integer) fractalObject.getParameter(3), g);     //parameter=3=LS_STEP 抬笔，向前走的步长
 			break;
 		case '+':
-			turtle.turn((Double) fractalObject.getParameter(2));
+			turtle.turn((Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 右转角度数
 			break;
 		case '-':
-			turtle.turn(-(Double) fractalObject.getParameter(2));
+			turtle.turn(-(Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 左转角度数
 			break;
 		case '[':
 			// push
@@ -652,6 +699,42 @@ public class DrawPanel extends JPanel {
 			break;
 		case '-':
 			turtle.turn(-(Double) fractalObject.getParameter(4));
+			break;
+		case '[':
+			// push
+			stack.push(new Note(turtle.getXpos(), turtle.getYpos(), turtle
+					.getAlpha()));
+			break;
+		case ']':
+			// pop
+			note = (Note) stack.pop();
+			turtle.setXpos(note.getX());
+			turtle.setYpos(note.getY());
+			turtle.setAlpha(note.getAngle());
+			break;
+		default: {
+		}
+		}
+	}
+	
+	//LSTYPE1替代规则
+	private void lsScaleAction(Graphics g, char ch, Turtle turtle, LLStack stack,
+			Note note) {
+		//System.out.print("ok");
+		switch (ch) {
+		case 'F':
+			turtle.pendown();
+			turtle.move((Integer) fractalObject.getParameter(3), g);    //parameter=3=LS_STEP 落笔，向前走的步长
+			break;
+		case 'f':
+			turtle.penup();
+			turtle.move((Integer) fractalObject.getParameter(3), g);     //parameter=3=LS_STEP 抬笔，向前走的步长
+			break;
+		case '+':
+			turtle.turn((Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 右转角度数
+			break;
+		case '-':
+			turtle.turn(-(Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 左转角度数
 			break;
 		case '[':
 			// push
