@@ -34,8 +34,8 @@ public class StatePanel extends JPanel {
 		textFields = new ArrayList<JTextField>();
 		sliderParameters = new ArrayList<JSlider>();
 
-		this.panelParameter = new JPanel();		//参数面板
-		this.panelState = new JPanel();		//状态面板
+		this.panelParameter = new JPanel(); // 参数面板
+		this.panelState = new JPanel(); // 状态面板
 		this.panelState.setLayout(new GridLayout(0, 1));
 		this.labFractalType = new JLabel("Fractal Type : ");
 		this.comboBoxFractalType = new JComboBox();
@@ -46,7 +46,7 @@ public class StatePanel extends JPanel {
 		this.comboBoxFractalType.addItem("KochType03");
 		this.comboBoxFractalType.addItem("KochType04");
 		this.comboBoxFractalType.addItem("ArboresentType");
-		this.comboBoxFractalType.addItem("SierpinskiType");	
+		this.comboBoxFractalType.addItem("SierpinskiType");
 		this.comboBoxFractalType.addItem("LeafType");
 		this.comboBoxFractalType.addItem("LSType01");
 		this.comboBoxFractalType.addItem("LSType02");
@@ -59,7 +59,7 @@ public class StatePanel extends JPanel {
 		this.comboBoxFractalType.addItem("JuliaType03");
 		this.comboBoxFractalType.addItem("JuliaType04");
 		this.comboBoxFractalType.addItem("JuliaType05");
-		this.comboBoxFractalType.addItem("LSScaleType01");   //依据迭代深度变步长；		
+		this.comboBoxFractalType.addItem("LSScaleType01"); // 依据迭代深度变步长；
 		this.comboBoxFractalType.setSelectedIndex(-1);
 		this.comboBoxFractalType.addItemListener(new MyItemListener());
 
@@ -97,14 +97,14 @@ public class StatePanel extends JPanel {
 		/* 初始化所有面板内容和farctalObject参数;end */
 	}
 
-	private void initNothing(){
-		this.fractalObject=new FractalNothing();
-		frame.fractalObject=this.fractalObject;
+	private void initNothing() {
+		this.fractalObject = new FractalNothing();
+		frame.fractalObject = this.fractalObject;
 	}
-	
+
 	private void initKoch() {
 		if (fractalType == Constants.KOCHTYPE01) {
-			//do something.
+			// do something.
 		} else if (fractalType == Constants.KOCHTYPE02
 				|| fractalType == Constants.KOCHTYPE03
 				|| fractalType == Constants.KOCHTYPE04) {
@@ -139,7 +139,8 @@ public class StatePanel extends JPanel {
 			this.updateUI();// 更新panel1的控件
 
 			fractalObject.addParameter(Double.valueOf(textField1.getText()));
-		}else{}
+		} else {
+		}
 	}
 
 	private void intiLeaf() {
@@ -250,7 +251,7 @@ public class StatePanel extends JPanel {
 	}
 
 	private void initLS() {
-		if ((fractalType == Constants.LSTYPE01)) {
+		if (fractalType == Constants.LSTYPE01) {
 			JLabel label1 = new JLabel();
 			label1.setText("LS_SEED : ");
 			label1.setVisible(true);
@@ -273,23 +274,23 @@ public class StatePanel extends JPanel {
 			labels.add(label5);
 
 			JTextField textField1 = new JTextField("", 6);
-			textField1.setText(Constants.LS_SEED1);
+			textField1.setText(Constants.LSTYPE01_SEED);
 			textField1.setName("LS_SEED");
 			textField1.setVisible(true);
 			JTextField textField2 = new JTextField("", 6);
-			textField2.setText(Constants.LS_REGULATION);
+			textField2.setText(Constants.LSTYPE01_REGULATION);
 			textField2.setName("LS_REGULATION");
 			textField2.setVisible(true);
 			JTextField textField3 = new JTextField("", 6);
-			textField3.setText(Double.valueOf(Constants.LS_ANGLE).toString());
+			textField3.setText(Double.valueOf(Constants.LSTYPE01_ANGLE).toString());
 			textField3.setName("LS_ANGLE");
 			textField3.setVisible(true);
 			JTextField textField4 = new JTextField("", 6);
-			textField4.setText(Integer.valueOf(Constants.LS_STEP).toString());
+			textField4.setText(Integer.valueOf(Constants.LSTYPE01_STEP).toString());
 			textField4.setName("LS_STEP");
 			textField4.setVisible(true);
 			JTextField textField5 = new JTextField("", 6);
-			textField5.setText(Integer.valueOf(Constants.LS_DEPTH).toString());
+			textField5.setText(Integer.valueOf(Constants.LSTYPE01_DEPTH).toString());
 			textField5.setName("LS_DEPTH");
 			textField5.setVisible(true);
 			textField1.addActionListener(new MyTextFieldListener());
@@ -305,9 +306,9 @@ public class StatePanel extends JPanel {
 
 			JSlider sliderParameter1 = new JSlider();
 			sliderParameter1.setMinimum(1);
-			sliderParameter1.setMaximum(100);
+			sliderParameter1.setMaximum(200);
 			sliderParameter1.setMinorTickSpacing(1);
-			sliderParameter1.setValue((int) Constants.LS_ANGLE);
+			sliderParameter1.setValue((int) Constants.LSTYPE01_ANGLE);
 			sliderParameter1.setPaintLabels(true);
 			sliderParameter1.setName("LS_ANGLE");
 			sliderParameter1.setVisible(true);
@@ -328,11 +329,11 @@ public class StatePanel extends JPanel {
 
 			this.updateUI();// 更新panel1的控件
 
-			fractalObject.addParameter(Constants.LS_SEED1);
-			fractalObject.addParameter(Constants.LS_REGULATION);
-			fractalObject.addParameter(Constants.LS_ANGLE);
-			fractalObject.addParameter(Constants.LS_STEP);
-			fractalObject.addParameter(Constants.LS_DEPTH);
+			fractalObject.addParameter(Constants.LSTYPE01_SEED);
+			fractalObject.addParameter(Constants.LSTYPE01_REGULATION);
+			fractalObject.addParameter(Constants.LSTYPE01_ANGLE);
+			fractalObject.addParameter(Constants.LSTYPE01_STEP);
+			fractalObject.addParameter(Constants.LSTYPE01_DEPTH);
 		} else if (fractalType == Constants.LSTYPE02) {
 			JLabel label1 = new JLabel();
 			label1.setText("LS_SEED : ");
@@ -360,27 +361,27 @@ public class StatePanel extends JPanel {
 			labels.add(label6);
 
 			JTextField textField1 = new JTextField("", 6);
-			textField1.setText(Constants.LS_SEED2);
+			textField1.setText(Constants.LSTYPE02_SEED);
 			textField1.setName("LS_SEED");
 			textField1.setVisible(true);
 			JTextField textField2 = new JTextField("", 6);
-			textField2.setText(Constants.LS02_REGULATION1);
+			textField2.setText(Constants.LSTYPE02_REGULATION1);
 			textField2.setName("LS_REGULATION1");
 			textField2.setVisible(true);
 			JTextField textField3 = new JTextField("", 6);
-			textField3.setText(Constants.LS02_REGULATION2);
+			textField3.setText(Constants.LSTYPE02_REGULATION2);
 			textField3.setName("LS_REGULATION2");
 			textField3.setVisible(true);
 			JTextField textField4 = new JTextField("", 6);
-			textField4.setText(Double.valueOf(Constants.LS_ANGLE).toString());
+			textField4.setText(Double.valueOf(Constants.LSTYPE02_ANGLE).toString());
 			textField4.setName("LS_ANGLE");
 			textField4.setVisible(true);
 			JTextField textField5 = new JTextField("", 6);
-			textField5.setText(Integer.valueOf(Constants.LS_STEP).toString());
+			textField5.setText(Integer.valueOf(Constants.LSTYPE02_STEP).toString());
 			textField5.setName("LS_STEP");
 			textField5.setVisible(true);
 			JTextField textField6 = new JTextField("", 6);
-			textField6.setText(Integer.valueOf(Constants.LS_DEPTH).toString());
+			textField6.setText(Integer.valueOf(Constants.LSTYPE02_DEPTH).toString());
 			textField6.setName("LS_DEPTH");
 			textField6.setVisible(true);
 			textField1.addActionListener(new MyTextFieldListener());
@@ -397,10 +398,10 @@ public class StatePanel extends JPanel {
 			textFields.add(textField6);
 
 			JSlider sliderParameter1 = new JSlider();
-			sliderParameter1.setMinimum(1);
-			sliderParameter1.setMaximum(100);
+			sliderParameter1.setMinimum(Constants.LSTYPE02_ANGLE_MIN);
+			sliderParameter1.setMaximum(Constants.LSTYPE02_ANGLE_MAX);
 			sliderParameter1.setMinorTickSpacing(1);
-			sliderParameter1.setValue((int) Constants.LS_ANGLE);
+			sliderParameter1.setValue((int) Constants.LSTYPE02_ANGLE);
 			sliderParameter1.setPaintLabels(true);
 			sliderParameter1.setName("LS_ANGLE");
 			sliderParameter1.setVisible(true);
@@ -423,12 +424,12 @@ public class StatePanel extends JPanel {
 
 			this.updateUI();// 更新panel1的控件
 
-			fractalObject.addParameter(Constants.LS_SEED2);
-			fractalObject.addParameter(Constants.LS02_REGULATION1);
-			fractalObject.addParameter(Constants.LS02_REGULATION2);
-			fractalObject.addParameter(Constants.LS_ANGLE);
-			fractalObject.addParameter(Constants.LS_STEP);
-			fractalObject.addParameter(Constants.LS_DEPTH);
+			fractalObject.addParameter(Constants.LSTYPE02_SEED);
+			fractalObject.addParameter(Constants.LSTYPE02_REGULATION1);
+			fractalObject.addParameter(Constants.LSTYPE02_REGULATION2);
+			fractalObject.addParameter(Constants.LSTYPE02_ANGLE);
+			fractalObject.addParameter(Constants.LSTYPE02_STEP);
+			fractalObject.addParameter(Constants.LSTYPE02_DEPTH);
 		} else if (fractalType == Constants.LSTYPE03) {
 			JLabel label1 = new JLabel();
 			label1.setText("LS_SEED : ");
@@ -456,27 +457,27 @@ public class StatePanel extends JPanel {
 			labels.add(label6);
 
 			JTextField textField1 = new JTextField("", 6);
-			textField1.setText(Constants.LS_SEED3);
+			textField1.setText(Constants.LSTYPE03_SEED);
 			textField1.setName("LS_SEED");
 			textField1.setVisible(true);
 			JTextField textField2 = new JTextField("", 6);
-			textField2.setText(Constants.LS03_REGULATION1);
+			textField2.setText(Constants.LSTYPE03_REGULATION1);
 			textField2.setName("LS_REGULATION1");
 			textField2.setVisible(true);
 			JTextField textField3 = new JTextField("", 6);
-			textField3.setText(Constants.LS03_REGULATION2);
+			textField3.setText(Constants.LSTYPE03_REGULATION2);
 			textField3.setName("LS_REGULATION2");
 			textField3.setVisible(true);
 			JTextField textField4 = new JTextField("", 6);
-			textField4.setText(Double.valueOf(Constants.LS_ANGLE).toString());
+			textField4.setText(Double.valueOf(Constants.LSTYPE03_ANGLE).toString());
 			textField4.setName("LS_ANGLE");
 			textField4.setVisible(true);
 			JTextField textField5 = new JTextField("", 6);
-			textField5.setText(Integer.valueOf(Constants.LS_STEP).toString());
+			textField5.setText(Integer.valueOf(Constants.LSTYPE03_STEP).toString());
 			textField5.setName("LS_STEP");
 			textField5.setVisible(true);
 			JTextField textField6 = new JTextField("", 6);
-			textField6.setText(Integer.valueOf(Constants.LS_DEPTH).toString());
+			textField6.setText(Integer.valueOf(Constants.LSTYPE03_DEPTH).toString());
 			textField6.setName("LS_DEPTH");
 			textField6.setVisible(true);
 			textField1.addActionListener(new MyTextFieldListener());
@@ -493,10 +494,10 @@ public class StatePanel extends JPanel {
 			textFields.add(textField6);
 
 			JSlider sliderParameter1 = new JSlider();
-			sliderParameter1.setMinimum(1);
-			sliderParameter1.setMaximum(100);
+			sliderParameter1.setMinimum(Constants.LSTYPE03_ANGLE_MIN);
+			sliderParameter1.setMaximum(Constants.LSTYPE03_ANGLE_MAX);
 			sliderParameter1.setMinorTickSpacing(1);
-			sliderParameter1.setValue((int) Constants.LS_ANGLE);
+			sliderParameter1.setValue((int) Constants.LSTYPE03_ANGLE);
 			sliderParameter1.setPaintLabels(true);
 			sliderParameter1.setName("LS_ANGLE");
 			sliderParameter1.setVisible(true);
@@ -519,12 +520,12 @@ public class StatePanel extends JPanel {
 
 			this.updateUI();// 更新panel1的控件
 
-			fractalObject.addParameter(Constants.LS_SEED3);
-			fractalObject.addParameter(Constants.LS03_REGULATION1);
-			fractalObject.addParameter(Constants.LS03_REGULATION2);
-			fractalObject.addParameter(Constants.LS_ANGLE);
-			fractalObject.addParameter(Constants.LS_STEP);
-			fractalObject.addParameter(Constants.LS_DEPTH);
+			fractalObject.addParameter(Constants.LSTYPE03_SEED);
+			fractalObject.addParameter(Constants.LSTYPE03_REGULATION1);
+			fractalObject.addParameter(Constants.LSTYPE03_REGULATION2);
+			fractalObject.addParameter(Constants.LSTYPE03_ANGLE);
+			fractalObject.addParameter(Constants.LSTYPE03_STEP);
+			fractalObject.addParameter(Constants.LSTYPE03_DEPTH);
 		} else if (fractalType == Constants.LSTYPE04) {
 			JLabel label1 = new JLabel();
 			label1.setText("LS_SEED : ");
@@ -556,31 +557,31 @@ public class StatePanel extends JPanel {
 			labels.add(label7);
 
 			JTextField textField1 = new JTextField("", 6);
-			textField1.setText(Constants.LS_SEED4);
+			textField1.setText(Constants.LSTYPE04_SEED);
 			textField1.setName("LS_SEED");
 			textField1.setVisible(true);
 			JTextField textField2 = new JTextField("", 6);
-			textField2.setText(Constants.LS04_REGULATION1);
+			textField2.setText(Constants.LSTYPE04_REGULATION1);
 			textField2.setName("LS_REGULATION1");
 			textField2.setVisible(true);
 			JTextField textField3 = new JTextField("", 6);
-			textField3.setText(Constants.LS04_REGULATION2);
+			textField3.setText(Constants.LSTYPE04_REGULATION2);
 			textField3.setName("LS_REGULATION2");
 			textField3.setVisible(true);
 			JTextField textField4 = new JTextField("", 6);
-			textField4.setText(Constants.LS04_REGULATION3);
+			textField4.setText(Constants.LSTYPE04_REGULATION3);
 			textField4.setName("LS_REGULATION3");
 			textField4.setVisible(true);
 			JTextField textField5 = new JTextField("", 6);
-			textField5.setText(Double.valueOf(Constants.LS_ANGLE).toString());
+			textField5.setText(Double.valueOf(Constants.LSTYPE04_ANGLE).toString());
 			textField5.setName("LS_ANGLE");
 			textField5.setVisible(true);
 			JTextField textField6 = new JTextField("", 6);
-			textField6.setText(Integer.valueOf(Constants.LS_STEP).toString());
+			textField6.setText(Integer.valueOf(Constants.LSTYPE04_STEP).toString());
 			textField6.setName("LS_STEP");
 			textField6.setVisible(true);
 			JTextField textField7 = new JTextField("", 6);
-			textField7.setText(Integer.valueOf(Constants.LS_DEPTH).toString());
+			textField7.setText(Integer.valueOf(Constants.LSTYPE04_DEPTH).toString());
 			textField7.setName("LS_DEPTH");
 			textField7.setVisible(true);
 			textField1.addActionListener(new MyTextFieldListener());
@@ -599,10 +600,10 @@ public class StatePanel extends JPanel {
 			textFields.add(textField7);
 
 			JSlider sliderParameter1 = new JSlider();
-			sliderParameter1.setMinimum(1);
-			sliderParameter1.setMaximum(100);
+			sliderParameter1.setMinimum(Constants.LSTYPE04_SLIDER_MIN);
+			sliderParameter1.setMaximum(Constants.LSTYPE04_SLIDER_MAX);
 			sliderParameter1.setMinorTickSpacing(1);
-			sliderParameter1.setValue((int) Constants.LS_ANGLE);
+			sliderParameter1.setValue((int) Constants.LSTYPE04_ANGLE);
 			sliderParameter1.setPaintLabels(true);
 			sliderParameter1.setName("LS_ANGLE");
 			sliderParameter1.setVisible(true);
@@ -627,14 +628,14 @@ public class StatePanel extends JPanel {
 
 			this.updateUI();// 更新panel1的控件
 
-			fractalObject.addParameter(Constants.LS_SEED4);
-			fractalObject.addParameter(Constants.LS04_REGULATION1);
-			fractalObject.addParameter(Constants.LS04_REGULATION2);
-			fractalObject.addParameter(Constants.LS04_REGULATION3);
-			fractalObject.addParameter(Constants.LS_ANGLE);
-			fractalObject.addParameter(Constants.LS_STEP);
-			fractalObject.addParameter(Constants.LS_DEPTH);
-		}else if (fractalType == Constants.LSSCALE01){
+			fractalObject.addParameter(Constants.LSTYPE04_SEED);
+			fractalObject.addParameter(Constants.LSTYPE04_REGULATION1);
+			fractalObject.addParameter(Constants.LSTYPE04_REGULATION2);
+			fractalObject.addParameter(Constants.LSTYPE04_REGULATION3);
+			fractalObject.addParameter(Constants.LSTYPE04_ANGLE);
+			fractalObject.addParameter(Constants.LSTYPE04_STEP);
+			fractalObject.addParameter(Constants.LSTYPE04_DEPTH);
+		} else if (fractalType == Constants.LSSCALE01) {
 			JLabel label1 = new JLabel();
 			label1.setText("LSSCALE_SEED : ");
 			label1.setVisible(true);
@@ -665,15 +666,18 @@ public class StatePanel extends JPanel {
 			textField2.setName("LSSCALE_REGULATION");
 			textField2.setVisible(true);
 			JTextField textField3 = new JTextField("", 6);
-			textField3.setText(Double.valueOf(Constants.LSSCALE_ANGLE).toString());
+			textField3.setText(Double.valueOf(Constants.LSSCALE_ANGLE)
+					.toString());
 			textField3.setName("LSSCALE_ANGLE");
 			textField3.setVisible(true);
 			JTextField textField4 = new JTextField("", 6);
-			textField4.setText(Integer.valueOf(Constants.LSSCALE_STEP).toString());
+			textField4.setText(Integer.valueOf(Constants.LSSCALE_STEP)
+					.toString());
 			textField4.setName("LSSCALE_STEP");
 			textField4.setVisible(true);
 			JTextField textField5 = new JTextField("", 6);
-			textField5.setText(Integer.valueOf(Constants.LSSCALE_DEPTH).toString());
+			textField5.setText(Integer.valueOf(Constants.LSSCALE_DEPTH)
+					.toString());
 			textField5.setName("LSSCALE_DEPTH");
 			textField5.setVisible(true);
 			textField1.addActionListener(new MyTextFieldListener());
@@ -716,8 +720,9 @@ public class StatePanel extends JPanel {
 			fractalObject.addParameter(Constants.LSSCALE_REGULATION);
 			fractalObject.addParameter(Constants.LSSCALE_ANGLE);
 			fractalObject.addParameter(Constants.LSSCALE_STEP);
-			fractalObject.addParameter(Constants.LSSCALE_DEPTH);			
-		}else{}
+			fractalObject.addParameter(Constants.LSSCALE_DEPTH);
+		} else {
+		}
 	}
 
 	private void initIFSJulia() {
@@ -787,9 +792,9 @@ public class StatePanel extends JPanel {
 
 		this.updateUI();// 更新panel1的控件
 
-		this.fractalObject=new FractalIFSJulia();
-		frame.fractalObject=fractalObject;
-		
+		this.fractalObject = new FractalIFSJulia();
+		frame.fractalObject = fractalObject;
+
 		fractalObject.addParameter(Constants.IFS_CX);
 		fractalObject.addParameter(Constants.IFS_CY);
 		fractalObject.addParameter(Constants.IFS_DEPTH);
@@ -892,27 +897,27 @@ public class StatePanel extends JPanel {
 		panel2.add(sliderParameter3);
 		this.updateUI();// 更新panel1的控件
 
-		fractalObject=new FractalJulia();
+		fractalObject = new FractalJulia();
 		fractalObject.addParameter(Constants.JULIA_CP);
 		fractalObject.addParameter(Constants.JULIA_CQ);
 		fractalObject.addParameter(Constants.JULIA_STEP);
 		fractalObject.addParameter(Constants.JULIA_STEP_SPEED);
-		frame.fractalObject=this.fractalObject;
+		frame.fractalObject = this.fractalObject;
 
 	}
 
-	private void initIFS(){
-		this.fractalObject=new FractalIFS();
-		frame.fractalObject=this.fractalObject;
+	private void initIFS() {
+		this.fractalObject = new FractalIFS();
+		frame.fractalObject = this.fractalObject;
 	}
-	
+
 	class MyItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 				init();
 
 				fractalType = comboBoxFractalType.getSelectedIndex();
-				//System.out.println("StatePanel 917 = "+fractalType);
+				// System.out.println("StatePanel 917 = "+fractalType);
 				if (fractalType == Constants.NOTHING) {
 					textAreaStateMessage.setText("NOTHING Set");
 					initNothing();
@@ -950,15 +955,16 @@ public class StatePanel extends JPanel {
 						|| fractalType == Constants.JULIATYPE05) {
 					textAreaStateMessage.setText("SIERPINSKITYPE Set");
 					initJulia();
-				}else if(fractalType==Constants.LSSCALE01){
+				} else if (fractalType == Constants.LSSCALE01) {
 					textAreaStateMessage.setText("LSSCALE01 Set");
 					initLS();
-				}else{
-					//do something.
+				} else {
+					// do something.
 				}
 				fractalObject.setFractalType(fractalType);
 				frame.repaint();
-			}else{}
+			} else {
+			}
 		}
 	}
 
@@ -975,7 +981,8 @@ public class StatePanel extends JPanel {
 							.get(0)
 							.setValue(
 									(int) (para01 * 100 / Constants.KOCHTYPE02_MAX_SCALE));
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.LEAFTYPE) {
 				if (source.getName().equals("LEAF_ANGLE1")) {
 					int leafB = Integer.valueOf(source.getText());
@@ -993,7 +1000,8 @@ public class StatePanel extends JPanel {
 					double leafScale2 = Double.valueOf(source.getText());
 					fractalObject.setParameter(3, leafScale2);
 					sliderParameters.get(3).setValue((int) leafScale2 * 10);
-				}else{}
+				} else {
+				}
 			} else if ((fractalType == Constants.LSTYPE01)) {
 				if (source.getName().equals("LS_SEED")) {
 					String seed = source.getText();
@@ -1011,7 +1019,8 @@ public class StatePanel extends JPanel {
 				} else if (source.getName().equals("LS_DEPTH")) {
 					int depth = Integer.valueOf(source.getText());
 					fractalObject.setParameter(4, depth);
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.LSTYPE02
 					|| fractalType == Constants.LSTYPE03) {
 				if (source.getName().equals("LS_SEED")) {
@@ -1059,7 +1068,7 @@ public class StatePanel extends JPanel {
 					fractalObject.setParameter(6, depth);
 				}
 			} else if (fractalType == Constants.IFSJulia) {
-				FractalIFSJulia.count=0;
+				FractalIFSJulia.count = 0;
 				fractalObject.setParameter(3,
 						new byte[Constants.IFS_W + 1][Constants.IFS_H + 1]);
 				fractalObject.initPixels();
@@ -1138,8 +1147,9 @@ public class StatePanel extends JPanel {
 							.setValue(
 									(int) (stepSpeed
 											* (step - Constants.JULIA_STEP_MIN) / (Constants.JULIA_STEP_MAX - Constants.JULIA_STEP_MIN)));
-				}else{}
-			}else if( (fractalType == Constants.LSSCALE01)){
+				} else {
+				}
+			} else if ((fractalType == Constants.LSSCALE01)) {
 				if (source.getName().equals("LSSCALE_SEED")) {
 					String seed = source.getText();
 					fractalObject.setParameter(0, seed);
@@ -1156,8 +1166,10 @@ public class StatePanel extends JPanel {
 				} else if (source.getName().equals("LSSCALE_DEPTH")) {
 					int depth = Integer.valueOf(source.getText());
 					fractalObject.setParameter(4, depth);
-				}else{}					
-			}else{}
+				} else {
+				}
+			} else {
+			}
 			frame.repaint();
 		}
 	}
@@ -1174,7 +1186,8 @@ public class StatePanel extends JPanel {
 					fractalObject.setParameter(0, para01);
 					textFields.get(0)
 							.setText(Double.valueOf(para01).toString());
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.LEAFTYPE) {
 				if (source.getName().equals("LEAF_ANGLE1")) {
 					int leafB = source.getValue();
@@ -1196,32 +1209,36 @@ public class StatePanel extends JPanel {
 					fractalObject.setParameter(3, leafScale2 / 10.0);
 					textFields.get(3).setText(
 							Double.valueOf(leafScale2 / 10.0).toString());
-				}else{}
+				} else {
+				}
 			} else if ((fractalType == Constants.LSTYPE01)) {
 				if (source.getName().equals("LS_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(2, angle);
 					textFields.get(2).setText(Double.valueOf(angle).toString());
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.LSTYPE02
 					|| fractalType == Constants.LSTYPE03) {
 				if (source.getName().equals("LS_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(3, angle);
 					textFields.get(3).setText(Double.valueOf(angle).toString());
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.LSTYPE04) {
 				if (source.getName().equals("LS_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(4, angle);
 					textFields.get(4).setText(Double.valueOf(angle).toString());
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.IFSJulia) {
 				String string;
-				FractalIFSJulia.count=0;
+				FractalIFSJulia.count = 0;
 				fractalObject.setParameter(3,
 						new byte[Constants.IFS_W][Constants.IFS_H]);
-				fractalObject.initPixels();	//这里如果不清图像数组时，会保留所有图像痕迹，也是一种效果；
+				fractalObject.initPixels(); // 这里如果不清图像数组时，会保留所有图像痕迹，也是一种效果；
 				if (source.getName().equals("IFS_CX")) {
 					double ifsCx = Double.valueOf(source.getValue())
 							* (Constants.IFS_CX_MAX - Constants.IFS_CX_MIN)
@@ -1230,7 +1247,8 @@ public class StatePanel extends JPanel {
 					string = Double.valueOf(ifsCx).toString();
 					if (string.length() > 8) {
 						string = string.substring(0, 8);
-					}else{}
+					} else {
+					}
 					textFields.get(0).setText(string);
 				} else if (source.getName().equals("IFS_CY")) {
 					double ifsCy = Double.valueOf(source.getValue())
@@ -1240,9 +1258,11 @@ public class StatePanel extends JPanel {
 					string = Double.valueOf(ifsCy).toString();
 					if (string.length() > 8) {
 						string = string.substring(0, 8);
-					}else{}
+					} else {
+					}
 					textFields.get(1).setText(string);
-				}else{}
+				} else {
+				}
 			} else if (fractalType == Constants.JULIATYPE01
 					|| fractalType == Constants.JULIATYPE02
 					|| fractalType == Constants.JULIATYPE03
@@ -1279,14 +1299,17 @@ public class StatePanel extends JPanel {
 					textFields.get(2).setText(
 							(string.length() > 10) ? string.substring(0, 10)
 									: string);
-				}else{}
-			}else if((fractalType == Constants.LSSCALE01)){
+				} else {
+				}
+			} else if ((fractalType == Constants.LSSCALE01)) {
 				if (source.getName().equals("LSSCALE_ANGLE")) {
 					double angle = Double.valueOf(source.getValue());
 					fractalObject.setParameter(2, angle);
 					textFields.get(2).setText(Double.valueOf(angle).toString());
-				}else{}				
-			}else{}
+				} else {
+				}
+			} else {
+			}
 			frame.repaint();
 		}
 	}

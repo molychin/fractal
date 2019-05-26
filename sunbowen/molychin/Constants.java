@@ -10,7 +10,7 @@ public final class Constants {
 	 *JULIATYPE03=17/JULIATYPE04=18/JULIATYPE05=19/LSSCALE01=20/
 	 */
 	
-	public static final boolean SAVE_PIC=true;		//true:保存图片
+	public static final boolean SAVE_PIC=false;		//true:保存图片
 	//截屏的范围
 	public static final int SAVE_LT_AX=100;
 	public static final int	SAVE_LT_AY=100;
@@ -68,31 +68,58 @@ public final class Constants {
 	public static final double LEAF_SCALE2=1.3;
 	//----------------------------	
 	public static final int LSTYPE01=9;
-	public static final int LS_STEP=100;
-	public static final double LS_ANGLE=22;
-	public static final int LS_DEPTH=5;
-	public static final String LS_SEED1="F";
-	//public static final String LS_REGULATION= "F[-F]F[+F]F";
-	public static final String LS_REGULATION= "F+F";
-	public static final int LS_AX=400;
-	public static final int LS_AY=400;
-	public static final int LS_PRI_ANGLE=0;
+	public static final int LSTYPE01_STEP=3;
+	public static final double LSTYPE01_ANGLE=22;
+	public static final int LSTYPE01_DEPTH=5;
+	public static final String LSTYPE01_SEED="F";
+	public static final String LSTYPE01_REGULATION= "F[-F]F[+F]F";
+	//public static final String LS_REGULATION= "F+F";
+	public static final int LSTYPE01_AX=550;
+	public static final int LSTYPE01_AY=800;
+	public static final int LSTYPE01_PRI_ANGLE=-90;
 	//----------------------------
 	public static final int LSTYPE02=10;
-	public static final String LS_SEED2="X";
-	public static final String LS02_REGULATION1= "XFY[+++++XFX][-----XFX]";
-	public static final String LS02_REGULATION2= "F-YF";	
+	public static final int LSTYPE02_STEP=3;
+	public static final double LSTYPE02_ANGLE=4;
+	public static final int LSTYPE02_DEPTH=5;
+	public static final String LSTYPE02_SEED="X";
+	public static final String LSTYPE02_REGULATION1= "XFY[+++++XFX][-----XFX]";
+	public static final String LSTYPE02_REGULATION2= "F-YF";	
+	public static final int LSTYPE02_AX=500;
+	public static final int LSTYPE02_AY=600;
+	public static final int LSTYPE02_PRI_ANGLE=-90;
+	public static final int LSTYPE02_ANGLE_MIN=-10;
+	public static final int LSTYPE02_ANGLE_MAX=10;
 	//----------------------------	
 	public static final int LSTYPE03=11;
-	public static final String LS_SEED3="L";
-	public static final String LS03_REGULATION1="+R-L-R+";
-	public static final String LS03_REGULATION2="-L+R+L-";
+	public static final int LSTYPE03_STEP=3;
+	public static final double LSTYPE03_ANGLE=22;
+	public static final int LSTYPE03_DEPTH=5;
+	public static final String LSTYPE03_SEED="L";
+	public static final String LSTYPE03_REGULATION1="+R-L-R+";
+	public static final String LSTYPE03_REGULATION2="-L+R+L-";
+	public static final int LSTYPE03_AX=900;
+	public static final int LSTYPE03_AY=800;
+	public static final int LSTYPE03_PRI_ANGLE=-180;
+	public static final int LSTYPE03_ANGLE_MIN=1;
+	public static final int LSTYPE03_ANGLE_MAX=100;
 	//------------------------------
 	public static final int LSTYPE04=12;
-	public static final String LS_SEED4="F";
-	public static final String LS04_REGULATION1="F[+F]F[-F]F";
-	public static final String LS04_REGULATION2="F[+F]F[-F[+F]]";
-	public static final String LS04_REGULATION3="FF-[-F+F+F]+[+F-F-F]";
+	public static final int LSTYPE04_STEP=3;
+	public static final double LSTYPE04_ANGLE=22;
+	public static final int LSTYPE04_DEPTH=6;
+	public static final String LSTYPE04_SEED="F";
+	public static final String LSTYPE04_REGULATION1="F[+F]F[-F]F";
+	public static final String LSTYPE04_REGULATION2="F[+F]F[-F[+F]]";
+	public static final String LSTYPE04_REGULATION3="FF-[-F+F+F]+[+F-F-F]";
+	public static final int LSTYPE04_AX=550;
+	public static final int LSTYPE04_AY=800;
+	public static final int LSTYPE04_PRI_ANGLE=-90;
+	public static final int LSTYPE04_ANGLE_MIN=1;
+	public static final int LSTYPE04_ANGLE_MAX=10;
+	public static final int LSTYPE04_SLIDER_MIN=1;
+	public static final int LSTYPE04_SLIDER_MAX=200;
+	//public static final double LSTYPE04_SCALE=1.0;
 	//----------选取一下参数，保证程序不会溢出--------------------
 	public static final int IFSJulia=13;
 	public static final int IFS_DEPTH=2;
@@ -146,9 +173,9 @@ public final class Constants {
 	public static final int LSSCALE_AX=600;
 	public static final int LSSCALE_AY=500;
 	public static final int LSSCALE_PRI_ANGLE=0;
-	public static final double LSSCALE_SCALE=5.5d;   //放大系数；
-	public static final double LSSCALE_ANGLE_MIN=80.0;
-	public static final double LSSCALE_ANGLE_MAX=90.0;
+	public static final double LSSCALE_SCALE=6.5d;   //放大系数；
+	public static final double LSSCALE_ANGLE_MIN=0;
+	public static final double LSSCALE_ANGLE_MAX=200;
 	
 	
 }
