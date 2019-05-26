@@ -10,6 +10,13 @@ public final class Constants {
 	 *JULIATYPE03=17/JULIATYPE04=18/JULIATYPE05=19/LSSCALE01=20/
 	 */
 	
+	public static final boolean SAVE_PIC=true;		//true:保存图片
+	//截屏的范围
+	public static final int SAVE_LT_AX=100;
+	public static final int	SAVE_LT_AY=100;
+	public static final int SAVE_RB_BX=1000;
+	public static final int SAVE_RB_BY=900;
+	//-----------------------------------------
 	public static final int SCREEN_LEFT_TOP_X=50;
 	public static final int SCREEN_LEFT_TOP_Y=50;
 	public static final int SCREEN_WIDTH=1200;
@@ -132,14 +139,16 @@ public final class Constants {
 	//-----------------------
 	public static final int LSSCALE01=20;	
 	public static final int LSSCALE_STEP=1;
-	public static final double LSSCALE_ANGLE=100;
+	public static final double LSSCALE_ANGLE=1;
 	public static final int LSSCALE_DEPTH=10;
 	public static final String LSSCALE_SEED1="F";
-	//public static final String LS_REGULATION= "F[-F]F[+F]F";
 	public static final String LSSCALE_REGULATION= "F+F";
 	public static final int LSSCALE_AX=600;
 	public static final int LSSCALE_AY=500;
 	public static final int LSSCALE_PRI_ANGLE=0;
-	public static final float LSSCALE_SCALE=6.5f;   //放大系数；
+	public static final double LSSCALE_SCALE=5.5d;   //放大系数；
+	public static final double LSSCALE_ANGLE_MIN=80.0;
+	public static final double LSSCALE_ANGLE_MAX=90.0;
+	
 	
 }

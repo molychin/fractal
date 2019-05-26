@@ -6,6 +6,15 @@ import javax.swing.*;
 
 import fractal.sunbowen.molychin.type.FractalObject;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 public class DrawPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	static int iNumber = 0;
@@ -345,9 +354,6 @@ public class DrawPanel extends JPanel {
 		double s2 = (Double) fractalObject.getParameter(2);
 		double s3 = (Double) fractalObject.getParameter(3);
 		double spi = Math.PI / 180;
-		
-		//System.out.println("fractalObject2="+fractalObject);
-		//System.out.println("fractalObjectType="+fractalObject.getFractalType());
 
 		if (longer > Constants.LEAF_MIN_STEP) {
 			x2 = x + longer * Math.cos(angle * spi);
@@ -421,8 +427,8 @@ public class DrawPanel extends JPanel {
 	}
 
 	//变长的LS01系统，即步长和迭代深度相关
-	public void drawLSScal01(Graphics g) {
-		currentDepth=0;
+	public void drawLSScal01(Graphics g){
+
 		int depth = (Integer) fractalObject.getParameter(4);    //从参数面板中获取迭代深度参数
 		StringBuffer seed = new StringBuffer((String) fractalObject
 				.getParameter(0));  //获取种子
@@ -450,8 +456,14 @@ public class DrawPanel extends JPanel {
 		}
 		
 		//System.out.println("seed = "+seed);
+		currentDepth=0;
 		for (int z = 0; z < seed.length(); z++) {
 			lsScaleAction(g, seed.charAt(z), turtle, stack, null);
+		}
+		
+		this.repaint();    //刷屏，显示最新图像		
+		if(Constants.SAVE_PIC){
+			savePic();
 		}
 	}	
 	
@@ -717,6 +729,7 @@ public class DrawPanel extends JPanel {
 			Note note) {
 
 		int moveStep=0;
+		double tempAngle,angle=0.0;
 		
 		switch (ch) {
 		case 'F':
@@ -732,7 +745,10 @@ public class DrawPanel extends JPanel {
 			turtle.move(moveStep, g);     //parameter=3=LS_STEP 抬笔，向前走的步长
 			break;
 		case '+':
-			turtle.turn((Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 右转角度数
+			tempAngle=(Double) fractalObject.getParameter(2);
+			angle=Constants.LSSCALE_ANGLE_MIN+(Constants.LSSCALE_ANGLE_MAX-Constants.LSSCALE_ANGLE_MIN)/200*tempAngle;
+			
+			turtle.turn(angle);	 //parameter=2=LS_ANGLE 右转角度数
 			break;
 		case '-':
 			turtle.turn(-(Double) fractalObject.getParameter(2));	 //parameter=2=LS_ANGLE 左转角度数
@@ -759,4 +775,31 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
+	//抓屏保存图形
+	//public void savePic() throws AWTException,IOException {
+	public void savePic(){	
+		//System.out.println(fractalObject.getParameter(2));
+		//String angle=fractalObject.getParameter(2).toString();
+		double tempAngle,angle=0.0;
+		tempAngle=(Double) fractalObject.getParameter(2);
+		angle=Constants.LSSCALE_ANGLE_MIN+(Constants.LSSCALE_ANGLE_MAX-Constants.LSSCALE_ANGLE_MIN)/200*tempAngle;
+		//抓屏保存图形
+		try{
+			Rectangle ret=new Rectangle(Constants.SAVE_LT_AX,Constants.SAVE_LT_AY,Constants.SAVE_RB_BX,Constants.SAVE_RB_BY);
+			BufferedImage screencapture = new Robot().createScreenCapture(ret); 			
+		     // Save as JPEG 
+			String fileName="i://angle_"+angle+".jpg";
+		     File file = new File(fileName); 
+		     try{
+			     ImageIO.write(screencapture, "jpg", file);
+		     }catch(IOException ioe){
+					//do something.
+		    	 System.out.println(ioe);
+		     }
+		}catch(AWTException awte){
+			//do something.
+			System.out.println(awte);
+		}
+	}
+	
 }
