@@ -560,6 +560,11 @@ public class DrawPanel extends JPanel {
 		for (int z = 0; z < seed.length(); z++) {
 			lsAction04(g, seed.charAt(z), turtle, stack, null);
 		}
+		
+		//this.repaint();    //刷屏，显示最新图像		
+		if(Constants.SAVE_PIC){
+			savePic();
+		}
 	}
 
 	private String selectRegulation(double random) {
@@ -783,23 +788,31 @@ public class DrawPanel extends JPanel {
 		//System.out.println(fractalObject.getParameter(2));
 		//String angle=fractalObject.getParameter(2).toString();
 		double tempAngle,angle=0.0;
-		tempAngle=(Double) fractalObject.getParameter(2);
-		angle=Constants.LSSCALE_ANGLE_MIN+(Constants.LSSCALE_ANGLE_MAX-Constants.LSSCALE_ANGLE_MIN)/200*tempAngle;
+		int fractalType = fractalObject.getFractalType();
+		
+		if(fractalType==Constants.LSTYPE04){
+			tempAngle=(Double) fractalObject.getParameter(4);
+			angle=Constants.LSTYPE04_ANGLE_MIN+(Constants.LSTYPE04_ANGLE_MAX-Constants.LSTYPE04_ANGLE_MIN)*tempAngle/
+				Constants.LSTYPE04_SLIDER_MAX;			
+		}else if(fractalType==Constants.LSSCALE01){
+			tempAngle=(Double) fractalObject.getParameter(2);
+			angle=Constants.LSSCALE_ANGLE_MIN+(Constants.LSSCALE_ANGLE_MAX-Constants.LSSCALE_ANGLE_MIN)/200*tempAngle;			
+		}else{			
+		}
+
 		//抓屏保存图形
 		try{
 			Rectangle ret=new Rectangle(Constants.SAVE_LT_AX,Constants.SAVE_LT_AY,Constants.SAVE_RB_BX,Constants.SAVE_RB_BY);
 			BufferedImage screencapture = new Robot().createScreenCapture(ret); 			
 		     // Save as JPEG 
-			String fileName="i://angle_"+angle+".jpg";
+			String fileName="i://angle_"+angle+".png";
 		     File file = new File(fileName); 
 		     try{
-			     ImageIO.write(screencapture, "jpg", file);
+			     ImageIO.write(screencapture, "png", file);
 		     }catch(IOException ioe){
-					//do something.
 		    	 System.out.println(ioe);
 		     }
 		}catch(AWTException awte){
-			//do something.
 			System.out.println(awte);
 		}
 	}

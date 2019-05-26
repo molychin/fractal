@@ -10,7 +10,7 @@ public final class Constants {
 	 *JULIATYPE03=17/JULIATYPE04=18/JULIATYPE05=19/LSSCALE01=20/
 	 */
 	
-	public static final boolean SAVE_PIC=false;		//true:保存图片
+	public static final boolean SAVE_PIC=true;		//true:保存图片
 	//截屏的范围
 	public static final int SAVE_LT_AX=100;
 	public static final int	SAVE_LT_AY=100;
@@ -106,19 +106,19 @@ public final class Constants {
 	//------------------------------
 	public static final int LSTYPE04=12;
 	public static final int LSTYPE04_STEP=3;
-	public static final double LSTYPE04_ANGLE=22;
+	public static final double LSTYPE04_ANGLE=1;
 	public static final int LSTYPE04_DEPTH=6;
 	public static final String LSTYPE04_SEED="F";
 	public static final String LSTYPE04_REGULATION1="F[+F]F[-F]F";
 	public static final String LSTYPE04_REGULATION2="F[+F]F[-F[+F]]";
 	public static final String LSTYPE04_REGULATION3="FF-[-F+F+F]+[+F-F-F]";
-	public static final int LSTYPE04_AX=550;
-	public static final int LSTYPE04_AY=800;
+	public static final int LSTYPE04_AX=650;
+	public static final int LSTYPE04_AY=850;
 	public static final int LSTYPE04_PRI_ANGLE=-90;
-	public static final int LSTYPE04_ANGLE_MIN=1;
-	public static final int LSTYPE04_ANGLE_MAX=10;
+	public static final double LSTYPE04_ANGLE_MIN=12.005;
+	public static final double LSTYPE04_ANGLE_MAX=12.006;
 	public static final int LSTYPE04_SLIDER_MIN=1;
-	public static final int LSTYPE04_SLIDER_MAX=200;
+	public static final int LSTYPE04_SLIDER_MAX=100;
 	//public static final double LSTYPE04_SCALE=1.0;
 	//----------选取一下参数，保证程序不会溢出--------------------
 	public static final int IFSJulia=13;
