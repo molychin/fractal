@@ -82,7 +82,11 @@ n=4: A B A A B   A B A
 
 
 
+参考书籍：
 
+|![](res/2019-05-27-11-19-21.png)!
+|:---:|
+|The Algorithmic Beauty of Plants|
 
 
 
